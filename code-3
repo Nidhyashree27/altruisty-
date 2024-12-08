@@ -1,4 +1,4 @@
-[9:18 pm, 08/12/2024] Vaishnavi Sridhar: from collections import deque
+ from collections import deque
 
 def min_of_max_in_subarrays(arr, k):
     n = len(arr)
@@ -43,23 +43,3 @@ arr = [int(input()) for _ in range(n)]
 
 # Output
 print(min_of_max_in_subarrays(arr, k))
-[9:18 pm, 08/12/2024] Vaishnavi Sridhar: def first_odd_flavor():
-    # Input
-    N = int(input("Enter the number of candies (N): "))
-    candies = [input("Enter the name:").strip() for _ in range(N)]
-    
-    # Count occurrences of each flavor
-    flavor_count = {}
-    for candy in candies:
-        flavor_count[candy] = flavor_count.get(candy, 0) + 1
-    
-    # Find the first flavor with an odd count
-    for candy in candies:
-        if flavor_count[candy] % 2 != 0:
-            return candy
-    
-    # If all flavors have even counts
-    return "All are even"
-
-# Output
-print(first_odd_flavor())
