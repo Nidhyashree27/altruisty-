@@ -1,33 +1,20 @@
-def find_strongest_trainees():
-    # Input strength levels for 3 rounds
-    print("Enter the strength levels (12 values):")
-    strength_levels = [int(input()) for _ in range(12)]
+def first_odd_flavor():
+    # Input
+    N = int(input("Enter the number of candies (N): "))
+    candies = [input("Enter the name:").strip() for _ in range(N)]
     
-    # Validate input
-    if any(level < 1 or level > 200 for level in strength_levels):
-        print("INVALID INPUT")
-        return
+    # Count occurrences of each flavor
+    flavor_count = {}
+    for candy in candies:
+        flavor_count[candy] = flavor_count.get(candy, 0) + 1
     
-    # Organize input into rounds for 4 trainees
-    trainees = [strength_levels[i::4] for i in range(4)]
+    # Find the first flavor with an odd count
+    for candy in candies:
+        if flavor_count[candy] % 2 != 0:
+            return candy
     
-    # Calculate average strength for each trainee
-    averages = [round(sum(trainee) / 3) for trainee in trainees]
-    
-    # Determine the highest average
-    max_average = max(averages)
-    
-    # Check if all trainees are unfit
-    if max_average < 100:
-        print("All trainees are unfit")
-        return
-    
-    # Identify trainees with the highest average
-    strongest_trainees = [i + 1 for i, avg in enumerate(averages) if avg == max_average]
-    
-    # Output results
-    for trainee in strongest_trainees:
-        print(f"Trainee Number : {trainee}")
+    # If all flavors have even counts
+    return "All are even"
 
-# Run the program
-find_strongest_trainees()
+# Output
+print(first_odd_flavor())
