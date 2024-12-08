@@ -1,0 +1,24 @@
+def max_profit(prices):
+    # Initialize minimum price and maximum profit
+    min_price = float('inf')
+    max_profit = 0
+    
+    # Loop through the prices
+    for price in prices:
+        # Update the minimum price if current price is lower
+        if price < min_price:
+            min_price = price
+        # Update the maximum profit if selling at current price is more profitable
+        elif price - min_price > max_profit:
+            max_profit = price - min_price
+    
+    return max_profit
+
+# Input the number of days
+n = int(input("Enter the number of days: "))
+print("Enter the property prices:")
+prices = [int(input()) for _ in range(n)]
+
+# Calculate and print the maximum profit
+result = max_profit(prices)
+print("Maximum Profit:", result)
