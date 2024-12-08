@@ -1,0 +1,65 @@
+[9:18 pm, 08/12/2024] Vaishnavi Sridhar: from collections import deque
+
+def min_of_max_in_subarrays(arr, k):
+    n = len(arr)
+    if k > n:
+        return -1  # Invalid case
+    
+    # Deque to store indices of elements
+    dq = deque()
+    max_in_windows = []
+
+    # Process the first k elements
+    for i in range(k):
+        # Remove elements smaller than the current from the back of the deque
+        while dq and arr[dq[-1]] <= arr[i]:
+            dq.pop()
+        dq.append(i)
+    
+    # Process the rest of the elements
+    for i in range(k, n):
+        # Add the maximum of the previous window
+        max_in_windows.append(arr[dq[0]])
+
+        # Remove elements no longer in the current window
+        while dq and dq[0] <= i - k:
+            dq.popleft()
+
+        # Remove smaller elements from the back of the deque
+        while dq and arr[dq[-1]] <= arr[i]:
+            dq.pop()
+        dq.append(i)
+    
+    # Add the maximum for the last window
+    max_in_windows.append(arr[dq[0]])
+
+    # Return the minimum of all maximums
+    return min(max_in_windows)
+
+# Input
+k = int(input("Enter segment length (k): "))
+n = int(input("Enter size of array (n): "))
+arr = [int(input()) for _ in range(n)]
+
+# Output
+print(min_of_max_in_subarrays(arr, k))
+[9:18 pm, 08/12/2024] Vaishnavi Sridhar: def first_odd_flavor():
+    # Input
+    N = int(input("Enter the number of candies (N): "))
+    candies = [input("Enter the name:").strip() for _ in range(N)]
+    
+    # Count occurrences of each flavor
+    flavor_count = {}
+    for candy in candies:
+        flavor_count[candy] = flavor_count.get(candy, 0) + 1
+    
+    # Find the first flavor with an odd count
+    for candy in candies:
+        if flavor_count[candy] % 2 != 0:
+            return candy
+    
+    # If all flavors have even counts
+    return "All are even"
+
+# Output
+print(first_odd_flavor())
